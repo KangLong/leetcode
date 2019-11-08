@@ -8,6 +8,8 @@ public class Solution {
      * @return
      */
     public static int removeDuplicates(int[] nums) {
+        //1.有序数组 若出现第一个不相同的元素，则后续元素必然不同
+        //2.len 作为“新数组”的索引，当出现不同元素时，直接将元素放入“新数组”的末尾
         int len = 0;
         for(int i = 0; i<nums.length;i++){
             if(nums[len]!=nums[i]){
