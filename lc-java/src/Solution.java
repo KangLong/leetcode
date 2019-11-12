@@ -2,6 +2,48 @@ import java.util.Arrays;
 
 public class Solution {
 
+
+    public static void main(String[] args) {
+        int[] nums = {0,1,0,2,1,0,1,3,2,1,2,1};
+        System.out.println(trap(nums));
+    }
+
+    /**
+     * 42. 接雨水
+     * 给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
+     * @param height
+     * @return
+     */
+    public static int trap(int[] height){
+        //双指针方法，从数组前后同时遍历
+        //能装对少水只和木桶的短板相关，故找到短板，再减去底部凸起部分，就能知道水桶能装多少水
+        int left = 0, right = height.length - 1; //表示数组左右索引值
+        int leftMax =0, rightMax = 0; //记录左右两边的最大值
+        int ans = 0; //结果
+        while(left < right){
+            if(height[left]<height[right]){ //当左指针元素小右指针元素时
+                if(height[left]>=leftMax){ //当左侧元素大于记录值时， 刷新最大值
+                    leftMax = height[left];
+                }else{
+                    //当前位置所能装载的水量, 是由左侧最高点和当前元素的差值所决定
+                    ans += (leftMax-height[left]);
+                }
+                left++;
+            }else{
+                if(height[right]>=rightMax){
+                    rightMax = height[right];
+                }else{
+                    //当前位置所能装载的水量, 是由右侧最高点和当前元素的差值所决定
+                    ans += (rightMax - height[right]);
+                }
+                right--;
+            }
+
+        }
+        return ans;
+    }
+
+
     /**
      * 189. 旋转数组
      * 给定一个数组，将数组中的元素向右移动 k 个位置，其中 k 是非负数。
@@ -65,12 +107,4 @@ public class Solution {
         return len+1;
     }
 
-    public static void main(String[] args) {
-        int[] nums = {1,2,3,4,5,6,7};
-        rotate2(nums,2);
-        for(int n:nums){
-            System.out.print(n);
-        }
-//        System.out.println(removeDuplicates(nums));
-    }
 }
