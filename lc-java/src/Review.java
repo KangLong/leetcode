@@ -60,4 +60,14 @@ public class Review {
         ListNode next;
         ListNode(int x) { val = x; }
     }
+
+    /**
+     * 242. 有效的字母异位词
+     * @param s
+     * @param t
+     * @return
+     */
+    public static boolean isAnagram(String s, String t) {
+        return false;
+    }
 }

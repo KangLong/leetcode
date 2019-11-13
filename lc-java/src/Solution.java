@@ -1,11 +1,32 @@
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Solution {
 
 
     public static void main(String[] args) {
-        int[] nums = {0,1,0,2,1,0,1,3,2,1,2,1};
-        System.out.println(trap(nums));
+//        int[] nums = {0,1,0,2,1,0,1,3,2,1,2,1};
+//        System.out.println(trap(nums));
+        String s = "rat", t = "art";
+        System.out.println(isAnagram(s,t));
+    }
+
+    /**
+     * 242. 有效的字母异位词
+     * @param s
+     * @param t
+     * @return
+     */
+    public static boolean isAnagram(String s, String t) {
+        //1.将两个字符串直接转换成 ascii数组，并排序，若相等则认为异位词
+        char[] c1 = s.toCharArray();
+        char[] c2 = t.toCharArray();
+        Arrays.sort(c1);
+        Arrays.sort(c2);
+        s = new String(c1);
+        t = new String(c2);
+        return s.equals(t);
     }
 
     /**
