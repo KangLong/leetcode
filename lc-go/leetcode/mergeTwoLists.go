@@ -2,6 +2,25 @@ package main
 
 import "fmt"
 
+func main() {
+	nums := []int{2, 1, 2, 2, 3, 5}
+	l := removeElement(nums, 2)
+	for i := 0; i < l; i++ {
+		fmt.Print(nums[i])
+	}
+}
+
+func removeElement(nums []int, val int) int {
+	curIndex := 0
+	for i := 0; i < len(nums); i++ {
+		if nums[i] != val {
+			nums[curIndex] = nums[i]
+			curIndex++
+		}
+	}
+	return curIndex
+}
+
 type ListNode struct {
 	Val  int
 	Next *ListNode
@@ -59,7 +78,7 @@ func newListNode(val int) *ListNode {
 	return ln
 }
 
-func initData(nums []int) (l1 *ListNode) {
+func InitData(nums []int) (l1 *ListNode) {
 	l1 = new(ListNode)
 	cur := l1
 	for _, v := range nums {
@@ -69,17 +88,4 @@ func initData(nums []int) (l1 *ListNode) {
 		cur = tmp
 	}
 	return l1.Next
-}
-
-func main() {
-
-	l1 := initData([]int{2})
-	l2 := initData([]int{1})
-
-	nl := mergeTwoLists(l1, l2)
-
-	for nl != nil {
-		fmt.Print(nl.Val, ",")
-		nl = nl.Next
-	}
 }
