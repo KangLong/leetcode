@@ -6,10 +6,46 @@ public class Solution {
 
 
     public static void main(String[] args) {
-//        int[] nums = {0,1,0,2,1,0,1,3,2,1,2,1};
-//        System.out.println(trap(nums));
-        String s = "rat", t = "art";
-        System.out.println(isAnagram(s,t));
+        System.out.println(climbStairs(3));
+    }
+
+    /**
+     * 70. 爬楼梯
+     * 假设你正在爬楼梯。需要 n 阶你才能到达楼顶。
+     * 每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？
+     * @param n
+     * @return
+     */
+    public static int climbStairs(int n) {
+        //1.
+        return (n-1)+(n/2)+1;
+    }
+
+    /**
+     * 283. 移动零
+     * 给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。
+     * @param nums
+     */
+    public static void moveZeroes(int[] nums) {
+/*        if(nums.length<=1) {
+            return;
+        }*/
+        int index = 0;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]!=0){
+                nums[index] = nums[i];
+                if(i!=index){
+                    nums[i] = 0;
+                }
+                index++;
+            }
+        }
+/*        if (index==nums.length){
+            return;
+        }
+        for(int i=nums.length-1;i>nums.length-index;i--){
+            nums[index] = 0;
+        }*/
     }
 
     /**
