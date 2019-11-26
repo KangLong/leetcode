@@ -1,4 +1,12 @@
+import java.util.Arrays;
+
 public class Review {
+
+    public static void main(String[] args) {
+        ListNode l1 = new ListNode(1);
+        ListNode l2 = new ListNode(2);
+        mergeTwoLists(l1,l2);
+    }
 
     /**
      * 26. 删除排序数组中的重复项
@@ -6,7 +14,13 @@ public class Review {
      * @return
      */
     public int removeDuplicates(int[] nums){
-        return 0;
+        int index = 0;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]!=nums[i+1]){
+                nums[++index] = nums[i+1];
+            }
+        }
+        return index++;
     }
 
     /**
@@ -15,18 +29,58 @@ public class Review {
      * @param nums
      * @param k
      */
-    public void rotate(int[] nums, int k){
+    public static void rotate(int[] nums, int k){
+        //复制一个数组，分别将需要移动的元素重新赋值到原数组中
+        int[] tmpArr = Arrays.copyOf(nums,nums.length);
+        int j = tmpArr.length-k;
+        for(int i=0;i<k;i++){
+            nums[i] = tmpArr[j++];
+        }
+        j = 0;
+        for(int i=k;i<nums.length;i++){
+            nums[i]=tmpArr[j++];
+        }
+    }
+
+    public void rotate2(int[]nums,int k){
 
     }
 
     /**
-     * 将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。
+     * 21.将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。
      * @param l1
      * @param l2
      * @return
      */
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        return null;
+    public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+
+        ListNode startNode = new ListNode(0);
+        ListNode curNode = startNode;
+        while(l1!=null){
+            while(l2!=null){
+                if(l1.val<l2.val){
+                    curNode.next = l1;
+
+                    l1 = l1.next;
+                }else{
+                    curNode.next = l2;
+                    l2 = l2.next;
+                }
+                curNode = curNode.next;
+                if(l2==null||l1==null){
+                    break;
+                }
+            }
+            if(l2==null||l1==null){
+                break;
+            }
+        }
+        if(l1!=null&&l2==null){
+            curNode.next = l1;
+        }else if(l2!=null&&l1==null){
+            curNode.next = l2;
+        }
+        return startNode.next;
     }
 
     /*
@@ -55,7 +109,7 @@ public class Review {
         return 0;
     }
 
-    class ListNode {
+    static class ListNode {
         int val;
         ListNode next;
         ListNode(int x) { val = x; }

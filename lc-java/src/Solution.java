@@ -111,9 +111,10 @@ public class Solution {
         //1.旋转即将数组最后的元素移动到数组的最前面
         //2.移动 k 个元素，也就是将前面 length-k个元素移动到数组最后
         //3.创建一个嵌套循环，内循环将数组第一个元素移动至末尾，外循环为需要被移动的元素个数
-        //4. 空间复杂度为 O(1) 时间复杂度为0(n^2)
-        if(nums.length<2||k==0)
+        //4. 空间复杂度为 O(1) 时间复杂度为0(n*k)
+        if(nums.length<2||k==0) {
             return;
+        }
         if(k>nums.length){
             k = k%nums.length;
         }
@@ -130,8 +131,9 @@ public class Solution {
     public static void rotate2(int[] nums,int k){
         //1.旋转即将数组最后的元素移动到数组的最前面
         //2.复制一个新的数组，用两个并列循环分别处理 k 个元素的赋值问题
-        if(nums.length<2||k==0)
+        if(nums.length<2||k==0) {
             return;
+        }
         if(k>nums.length){
             k = k%nums.length;
         }
