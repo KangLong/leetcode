@@ -6,7 +6,62 @@ public class Solution {
 
 
     public static void main(String[] args) {
-        System.out.println(climbStairs(3));
+        Solution solution = new Solution();
+        ListNode node = solution.initListNode(new int[]{2,4,7,5});
+        ListNode node2 = solution.initListNode(new int[]{5,6,4});
+        ListNode reNode = solution.addTwoNumbers(node,node2);
+        while (reNode!=null){
+            System.out.print(reNode.val+",");
+            reNode = reNode.next;
+        }
+    }
+
+    /**
+     * 2. 两数相加
+     * 多位数逆序存放在一个链表内，每个节点只有只能存放1位数字
+     * 如： 255 对应节点是  5->5->2
+     * 现给出两个这样的链表，计算两个链表相加后的链表
+     * @param l1
+     * @param l2
+     * @return
+     */
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        //起始节点
+        ListNode startNode = new ListNode(0);
+        //当前节点
+        ListNode curNode = startNode;
+        int carryNum = 0;
+
+        while(l1!=null||l2!=null){
+            int x = 0;
+            int y = 0;
+            int z = carryNum;
+            if(l1!=null){
+                x = l1.val;
+                l1 = l1.next;
+            }
+            if(l2!=null){
+                y = l2.val;
+                l2 = l2.next;
+            }
+            carryNum = (x+y+z) / 10;
+            curNode.next = new ListNode((x+y+z) % 10);;
+            curNode = curNode.next;
+        }
+        if (carryNum!=0){
+            curNode.next = new ListNode(carryNum);
+        }
+        return startNode.next;
+    }
+
+    private ListNode initListNode(int[] nums){
+        ListNode startNode = new ListNode(0);
+        ListNode curNode = startNode;
+        for (int num : nums){
+            curNode.next = new ListNode(num);
+            curNode = curNode.next;
+        }
+        return startNode.next;
     }
 
     /**
@@ -164,6 +219,15 @@ public class Solution {
             }
         }
         return len+1;
+    }
+
+    public class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+        }
     }
 
 }
